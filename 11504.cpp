@@ -9,7 +9,6 @@ int n, m;
 vector<vector<int> > graph, gg;
 int visited[nmax];
 vector<int > bag;
-int indeg[nmax];
 
 void dfs(int u ) {
     visited[u] = true;
@@ -48,13 +47,11 @@ int main() {
         cin >> n >> m;
         graph.assign(n + 1, vector<int > ());
         gg.assign(n + 1, vector<int > ());
-        memset(indeg, 0, sizeof indeg);
-
+       
         while(m -- ) {
             int u, v;
             cin >> u >> v;
             graph[u].pb(v);
-            indeg[v] ++;
             gg[v].pb(u);
         }   
         memset(visited, 0, sizeof visited);
@@ -70,7 +67,7 @@ int main() {
             int u = bag.back();
                     bag.pop_back();
             if(!visited[u]) {
-                ++tool;
+                ++ tool;
                 ok = true;
                 dfs1(u, tool);
                 ans += ok;
@@ -78,6 +75,5 @@ int main() {
         }
         cout << ans << endl;
     }
-
     return 0;
 }
